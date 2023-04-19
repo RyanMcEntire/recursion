@@ -23,32 +23,61 @@
 // how hard could it be? 😎
 //
 
+// function mergeSort(array) {
+//   let left = [];
+//   let right = [];
+//   let leftMerge = [];
+//   let newLeft = [];
+//   let newRight = [];
+//   if (array.length > 1) {
+//     console.log('array:', array);
+//     const middle = Math.floor(array.length / 2);
+//     console.log('middle:', middle);
+//     console.log('');
+//     left = array.slice(0, middle);
+//     console.log('left', left);
+//     right = array.slice(middle, array.length);
+//     console.log('right', right);
+//     leftMerge = mergeSort(left);
+//     rightMerge = mergeSort(right);
+//     console.log('leftMerge:', leftMerge, 'rightMerge', rightMerge);
+//     console.log('');
+//   }
+//   console.log('returned array', array);
+//   console.log('leftmerge bool', !leftMerge);
+//   if (leftMerge.length < 1) {
+//     leftMerge.push(array.shift());
+//     console.log(leftMerge);
+//   } else if (rightMerge.length < 1) {
+//   }
+//   return array;
+// }
+
+l = [4, 3, 6, 7, 2, 8, 5, 1];
+console.log('"mergeSort()"', mergeSort(l));
+
 function mergeSort(array) {
   let left = [];
   let right = [];
-  let leftMerge = [];
-  let newLeft = [];
-  let newRight = [];
+
   if (array.length > 1) {
-    console.log('array:', array);
     const middle = Math.floor(array.length / 2);
-    console.log('middle:', middle);
-    console.log('');
     left = array.slice(0, middle);
-    console.log('left', left);
     right = array.slice(middle, array.length);
-    console.log('right', right);
-    leftMerge = mergeSort(left);
-    rightMerge = mergeSort(right);
-    console.log('leftMerge:', leftMerge, 'rightMerge', rightMerge);
+    console.log('left', left, 'right', right);
     console.log('');
-  }
-  console.log('returned array', array);
-  console.log('leftmerge bool', !leftMerge);
-  if (leftMerge.length < 1) {
-    leftMerge.push(array.shift());
-    console.log(leftMerge);
-  } else if (rightMerge.length < 1) {
+
+    if (mergeSort(left) < mergeSort(right)) {
+      console.log(
+        'merge sort left and right',
+        array = mergeSort(left).concat(mergeSort(right))
+      );
+      
+      return array
+    } else {
+      array = mergeSort(right).concat(mergeSort(left))
+      return array
+    }
   }
   return array;
 }
