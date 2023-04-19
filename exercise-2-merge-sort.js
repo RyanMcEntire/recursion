@@ -139,43 +139,82 @@
 
 // l = [4, 3, 6, 7, 2, 8, 5, 1];
 // console.log('"mergeSort()"', mergeSort());
-function low(array) {
-  return array.indexOf(array[0]);
-}
-function high(array) {
-  return array.length - 1;
-}
-function mid(array) {
-  return Math.floor(array.length / 2);
-}
+//
+//
+// function low(array) {
+//   return array.indexOf(array[0]);
+// }
+// function high(array) {
+//   return array.length - 1;
+// }
+// function mid(array) {
+//   return Math.floor(array.length / 2);
+// }
+
+// function mergeSort(array) {
+//   if (array.length === 1) return array;
+//   if (low(array) < high(array)) {
+//     let left = array.slice(low(array), mid(array));
+//     let right = array.slice(mid(array));
+//     mergeSort(left);
+//     mergeSort(right);
+//     let k = 0;
+//     let copy = [];
+//     while (array.length > 1) {
+//       if (left[0] < right[0]) {
+//         copy[k] = left[0];
+//         array.shift();
+//         k++;
+//       }
+//       if (right[0] < left[0]) {
+//         copy[k] = right[0];
+//         array.splice(1, 1);
+//         k++;
+//       }
+//     }
+//     while (array.length) {
+//       copy[k++] = array.shift();
+//     }
+//     return copy;
+//   }
+//   console.log(array);
+//   return array;
+// }
+
+// l = [4, 3, 6, 7, 2, 8, 5, 1];
+// console.log('"mergeSort()"', mergeSort(l));
 
 function mergeSort(array) {
-  if (low(array) < high(array)) {
-    let left = array.slice(low(array), mid(array));
-    let right = array.slice(mid(array));
-    mergeSort(left);
-    mergeSort(right);
-    let k = 0;
-    let copy = [];
-    while (array.length > 1) {
-      if (left[0] < right[0]) {
-        copy[k] = left[0];
-        array.shift();
-        k++;
-      }
-      if (right[0] < left[0]) {
-        copy[k] = right[0];
-        array.splice(1, 1);
-        k++;
-      }
+  if (array.length === 1) return array;
+  const mid = Math.floor(array.length / 2);
+  const left = array.slice(0, mid);
+  const right = array.slice(mid);
+
+  return merge(mergeSort(left), mergeSort(right));
+}
+
+function merge(leftArray, rightArray) {
+  const newArray = [];
+  let i = 0;
+  let j = 0;
+  while (i < leftArray.length && j < rightArray.length) {
+    if (leftArray[i] < rightArray[j]) {
+      newArray.push(leftArray[i]);
+      i++;
+    } else {
+      newArray.push(rightArray[j]);
+      j++;
     }
-    while (array.length) {
-      copy[k++] = array.shift();
-    }
-    return copy;
   }
-  console.log(array);
-  return array;
+  while (i < leftArray.length) {
+    newArray.push(rightArray[i]);
+    i++;
+  }
+  while (j < rightArray.length) {
+    newArray.push(rightArray[j]);
+    j++;
+  }
+  return newArray;
 }
 
 l = [4, 3, 6, 7, 2, 8, 5, 1];
