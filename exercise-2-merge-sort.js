@@ -53,30 +53,126 @@
 //   return array;
 // }
 
-l = [4, 3, 6, 7, 2, 8, 5, 1];
-console.log('"mergeSort()"', mergeSort(l));
+// l = [4, 3, 6, 7, 2, 8, 5, 1];
+// console.log('"mergeSort()"', mergeSort(l));
+
+// function mergeSort(array) {
+//   console.log('array', array);
+//   let left = [];
+//   let right = [];
+
+//   if (array.length > 1) {
+//     const middle = Math.floor(array.length / 2);
+//     left = array.slice(0, middle);
+//     right = array.slice(middle, array.length);
+
+//     if (mergeSort(left) < mergeSort(right)) {
+//       array.push(mergeSort(left).shift());
+//       array.push(mergeSort(right).shift());
+//       console.log('mergesort array 1', array);
+//       return array;
+//     } else {
+//       array = mergeSort(right).concat(mergeSort(left));
+//       console.log('mergesort array 2', array);
+//       return ;rray
+//     }
+//   }
+//   return array;
+// }
+
+// l = [4, 3, 6, 7, 2, 8, 5, 1];
+// console.log('"mergeSort()"', mergeSort(l));
+
+// function mergeSort(array) {
+//   console.log('array', array);
+//   let left = [];
+//   let right = [];
+
+//   return array;
+// }
+
+// function mergeSort(array) {
+//   console.log('array:', array);
+//   let low = array.indexOf(array[0]);
+//   let high = array.indexOf(array[array.length - 1]);
+//   if (low < high) {
+//     let mid = Math.floor(array.length / 2);
+//     let left = array.slice(low, mid);
+//     let right = array.slice(mid, high + 1);
+//     mergeSort(left);
+//     mergeSort(right);
+//     console.log(
+//       'low',
+//       low,
+//       'high',
+//       high,
+//       'mid',
+//       mid,
+//       'left',
+//       left,
+//       'right',
+//       right
+//     );
+//     let i = 0;
+//     let j = 0;
+//     let k = 0;
+//     let copy = [];
+//     console.log('i:', i, 'j:', j, 'k:', k, 'mid:', mid);
+//     while (low <= mid - 1 && mid <= high) {
+//       if (left[i] < right[j]) {
+//         copy[k++] = left[i++];
+//         k++;
+//         i++;
+//       } else copy[k++] = right[j++];
+//       console.log(copy);
+//     }
+//     for (i <= mid - 1; i++; ) {
+//       copy[k++] = left[i];
+//     }
+//     for (j <= high; j++; ) {
+//       copy[k++] = right[j];
+//     }
+//     array = copy;
+//   }
+//   return array;
+// }
+
+// l = [4, 3, 6, 7, 2, 8, 5, 1];
+// console.log('"mergeSort()"', mergeSort());
 
 function mergeSort(array) {
-  let left = [];
-  let right = [];
-
-  if (array.length > 1) {
-    const middle = Math.floor(array.length / 2);
-    left = array.slice(0, middle);
-    right = array.slice(middle, array.length);
-    console.log('left', left, 'right', right);
-    console.log('');
-
-    if (mergeSort(left) < mergeSort(right)) {
-      console.log(
-        'merge sort left and right',
-        array = mergeSort(left).concat(mergeSort(right))
-      );
-      
-      return array
-    } else {
-      array = mergeSort(right).concat(mergeSort(left))
-      return array
+  let low = array.indexOf(array[0]);
+  let high = array.length - 1;
+  if (low < high) {
+    let mid = Math.floor(array.length / 2);
+    let left = array.slice(low, mid);
+    let right = array.slice(mid, high + 1);
+    mergeSort(left);
+    mergeSort(right);
+    let i = 0;
+    let j = 0;
+    let k = 0;
+    let copy = [];
+    while (low <= mid - 1 && mid <= array.length - 1) {
+      if (left[i] < right[j]) {
+        copy[k] = left[i];
+        k++;
+        i++;
+      }
+      if (right[j] < left[i]) {
+        copy[k] = right[j];
+        k++;
+        j++;
+      }
+    }
+    for (i <= mid - 1; i++; ) {
+      copy[k++] = left[i];
+    }
+    for (j <= high; j++; ) {
+      copy[k++] = right[j];
+    }
+    while (i <= mid) {
+      array[k++] = copy[i++];
     }
   }
   return array;
