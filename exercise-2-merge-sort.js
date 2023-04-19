@@ -1,3 +1,48 @@
+function mergeSort(array) {
+    if (array.length === 1) return array;
+    const mid = Math.floor(array.length / 2);
+    const left = mergeSort(array.slice(0, mid));
+    const right = mergeSort(array.slice(mid));
+
+    const newArray = [];
+    let i = 0;
+    let j = 0;
+
+    while (i < left.length && j < right.length) {
+        if (left[i] < right[j]) {
+            newArray.push(left[i++]);
+        } else {
+            newArray.push(right[j++]);
+        }
+    }
+    while (i < left.length) {
+        newArray.push(left[i++]);
+    }
+    while (j < right.length) {
+        newArray.push(right[j++]);
+    }
+    return newArray;
+}
+
+l = [4, 3, 6, 7, 2, 8, 5, 1];
+console.log(mergeSort(l)); // [1, 2, 3, 4, 5, 6, 7, 8]
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+// old code and idea sketching
+//
+//
 // is array bigger than 1?
 // if not, store in A
 // check if array in B
@@ -183,39 +228,3 @@
 
 // l = [4, 3, 6, 7, 2, 8, 5, 1];
 // console.log('"mergeSort()"', mergeSort(l));
-
-function mergeSort(array) {
-  if (array.length === 1) return array;
-  const mid = Math.floor(array.length / 2);
-  const left = array.slice(0, mid);
-  const right = array.slice(mid);
-
-  return merge(mergeSort(left), mergeSort(right));
-}
-
-function merge(leftArray, rightArray) {
-  const newArray = [];
-  let i = 0;
-  let j = 0;
-  while (i < leftArray.length && j < rightArray.length) {
-    if (leftArray[i] < rightArray[j]) {
-      newArray.push(leftArray[i]);
-      i++;
-    } else {
-      newArray.push(rightArray[j]);
-      j++;
-    }
-  }
-  while (i < leftArray.length) {
-    newArray.push(rightArray[i]);
-    i++;
-  }
-  while (j < rightArray.length) {
-    newArray.push(rightArray[j]);
-    j++;
-  }
-  return newArray;
-}
-
-l = [4, 3, 6, 7, 2, 8, 5, 1];
-console.log('"mergeSort()"', mergeSort(l));
